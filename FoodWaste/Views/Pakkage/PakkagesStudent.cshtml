@@ -1,0 +1,27 @@
+﻿@model UserInterface.ViewModels.StudentNrPakkages
+@{
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Pakkages</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <h5 class="bg-success text-white text-center m-2 p-2">Pakketen</h5>
+    <div class="text-center p-2">
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    <th class="text-success"><a class="text-success" asp-controller="Pakkage" asp-action="All" method="get">Pakketen</a></th>
+                    <th class="text-success"><a class="text-success" asp-controller="Pakkage" asp-action="Student" asp-route-studentNr="@Model?.StudentNr" method="get">Eigen pakketen</a></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    @await Html.PartialAsync("_Pakkages", Model!.CantinePakkages)
+</body>
+</html>

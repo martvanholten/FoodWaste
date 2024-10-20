@@ -1,0 +1,45 @@
+﻿@model UserInterface.ViewModels.RegisterModel
+@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <h5 class="bg-success text-white text-center m-2 p-2">Regristreer</h5>
+    <div class="d-flex justify-content-center">
+        <form asp-controller="Home" asp-action="Register" method="post" class="col-lg-6 offset-lg-3 m-2 align-content-center">
+            <div asp-validation-summary="All"></div>
+            <div class="form-group">
+                <label class="form-label text-success" asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="form-label text-success" asp-for="Id"></label>
+                <input asp-for="Id" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="form-label text-success" asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="form-label text-success" asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <select asp-for="Role">
+                    <option value="Employ">Medewerker</option>
+                    <option value="Student">Student</option>
+                </select>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success mt-3">Register</button>
+            </div>
+        </form>
+    </div>
+</body>

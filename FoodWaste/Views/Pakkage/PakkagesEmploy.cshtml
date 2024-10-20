@@ -1,0 +1,17 @@
+﻿@model CantinePakkages
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Pakkages</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <h5 class="bg-success text-white text-center m-2 p-2">Pakketen</h5>
+    @await Html.PartialAsync("_Pakkages", Model)
+    <div class="text-center p-2">
+        <a asp-controller="Pakkage" asp-action="Add" method="get" class="btn btn-success mt-3">Voeg pakket toe</a>
+    </div>
+</body>
+</html>

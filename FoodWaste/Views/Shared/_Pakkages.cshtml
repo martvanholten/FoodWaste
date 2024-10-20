@@ -1,0 +1,77 @@
+﻿@model CantinePakkages
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cantine</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="text-center p-2">
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    @if(Model.City != null){
+                        @foreach (var c in Model.City)
+                        {
+                            <th class="text-success"><a class="text-success" asp-controller="Pakkage" asp-action="CantinesByCity" asp-route-city="@c.Key" method="get">@c.Key</a></th>
+                        }
+                    }
+                </tr>
+            </thead>
+        </table>
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    @if (Model.Cantine != null)
+                    {
+                        @foreach (var c in Model.Cantine)
+                        {
+                            <th class="text-success"><a class="text-success" asp-controller="Pakkage" asp-action="CantinePakkages" asp-route-city="@c?.City" asp-route-cantine="@c?.Location" method="get">@c?.Location</a></th>
+                        }
+                    }
+                </tr>
+            </thead>
+        </table>
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    @if (Model.Pakkages != null && Model.City != null && Model.Cantine != null)
+                    {
+                        <th class="text-success"><a class="text-success" asp-controller="Pakkage" asp-action="Filtered" asp-route-city="@Model.Pakkages.FirstOrDefault()?.City" asp-route-cantine="@Model.Pakkages.FirstOrDefault()?.Cantine" asp-route-type="Breakfast" method="get">Ontbijt</a></th>
+                        <th class="text-success"><a class="text-success" asp-controller="Pakkage" asp-action="Filtered" asp-route-city="@Model.Pakkages.FirstOrDefault()?.City" asp-route-cantine="@Model.Pakkages.FirstOrDefault()?.Cantine" asp-route-type="Lunch" method="get">Lunch</a></th>
+                        <th class="text-success"><a class="text-success" asp-controller="Pakkage" asp-action="Filtered" asp-route-city="@Model.Pakkages.FirstOrDefault()?.City" asp-route-cantine="@Model.Pakkages.FirstOrDefault()?.Cantine" asp-route-type="Evning meal" method="get">Avond maal</a></th>
+                    }
+                </tr>
+            </thead>
+        </table>
+    </div>
+    @if (Model.Pakkages != null)
+    {
+        <div class="text-center p-2">
+            <table class="table table-bordered table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Stad</th>
+                        <th>Type</th>
+                        <th>Prijs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Domain.Models.Pakkage? p in Model.Pakkages)
+                    {
+                        <tr>
+                            <td class="text-success"><a class="text-success" asp-controller="Pakkage" asp-action="Pakkage" asp-route-title="@p?.Title" method="get">@p?.Title</a></td>
+                            <td class="text-success">@p?.City</td>
+                            <td class="text-success">@p?.Type</td>
+                            <td class="text-success">@p?.Price</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</body>
+</html>

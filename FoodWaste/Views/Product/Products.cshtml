@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Domain.Models.Product>
+@{
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Products</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <h5 class="bg-success text-white text-center m-2 p-2">Producten</h5>
+    <div class="text-center p-2">
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr>
+                    <th class="text-success">Title</th>
+                    <th class="text-success">Alcohol</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Domain.Models.Product? p in Model)
+                {
+                    <tr>
+                        <td class="text-success"><a class="text-success" asp-controller="Product" method="get" asp-action="Product" asp-route-title="@p?.Title">@p?.Title</a></td>
+                        @if (p?.Alchol == 1)
+                        {
+                            <td class="text-success">Bevat alcohol</td>
+                        }
+                        else
+                        {
+                            <td class="text-success">Bevat geen alcohol</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

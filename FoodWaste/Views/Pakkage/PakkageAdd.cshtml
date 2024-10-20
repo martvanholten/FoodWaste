@@ -1,0 +1,69 @@
+﻿@model UserInterface.ViewModels.ViewAddPakkage
+@{
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PakkageAdd</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <h5 class="bg-success text-white text-center m-2 p-2">Maak een nieuw pakket aan</h5>
+    <div class="text-center p-2">
+        <form asp-controller="Pakkage" asp-action="Add" method="post" class="col-xs-1" align="center">
+            <div asp-validation-summary="All"></div>
+            <div class="text-center p-2">
+                <div class="col-xs-1 border" align="center">
+                    <div class="bg-success text-white text-center m-2 p-2 font-weight-bold">
+                        <h5>Project informatie</h5>
+                    </div>
+                    <div class="text-success">
+                        <h6 class="font-weight-bold">Pakket informatie</h6>
+                    </div>
+                    <div class="row font-weight-bold text-success">
+                        <div class="col form-group"><label class="form-label" asp-for="Title"></label></div>
+                        <div class="col form-group"><label class="form-label" asp-for="Price"></label></div>
+                        <div class="col form-group"><label class="form-label" asp-for="Type"></label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col form-group"><input asp-for="Title" class="form-control"/></div>
+                        <div class="col form-group"><input asp-for="Price" class="form-control"/></div>
+                        <div class="col form-group"><input asp-for="Type" class="form-control" /></div>
+                    </div>
+                    <hr>
+                    <div class="text-success">
+                        <h6 class="font-weight-bold">Locatie</h6>
+                    </div>
+                    <div class="row font-weight-bold text-success">
+                        <div class="col form-group"><label class="form-label" asp-for="City"></label></div>
+                        <div class="col form-group"><label class="form-label" asp-for="Cantine"></label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col form-group"><input asp-for="City" class="form-control"/></div>
+                        <div class="col form-group"><input asp-for="Cantine" class="form-control"/></div>
+                    </div>
+                    <hr>
+                    <div class="text-success">
+                        <h6 class="font-weight-bold">Ophaal datum</h6>
+                    </div>
+                    <div class="row font-weight-bold text-success">
+                        <div class="col form-group"><label class="form-label" asp-for="PickUpDate"></label></div>
+                        <div class="col form-group"><label class="form-label" asp-for="ExperationDate"></label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col form-group"><input asp-for="PickUpDate" class="form-control"/></div>
+                        <div class="col form-group"><input asp-for="ExperationDate" class="form-control"/></div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success mt-3">Voeg toe</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

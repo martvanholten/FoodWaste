@@ -1,0 +1,32 @@
+﻿@model UserInterface.ViewModels.LogInModel
+@{
+    Layout = "";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <h5 class="bg-success text-white text-center m-2 p-2">Login</h5>
+    <div class="d-flex justify-content-center">
+        <form asp-controller="Home" asp-action="Login" method="post" class="col-lg-6 offset-lg-3 m-2 align-content-center">
+            <div asp-validation-summary="All"></div>
+            <div class="form-group">
+                <label class="form-label text-success" asp-for="Id">Student/Medewerker nummer:</label>
+                <input asp-for="Id" class="form-control" placeholder="id" />
+            </div>
+            <div class="form-group">
+                <label class="form-label text-success" asp-for="Password">Password:</label>
+                <input asp-for="Password" type="password" class="form-control" placeholder="password" />
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success mt-3">Login</button>
+                <a asp-controller="Home" asp-action="Register" method="get" class="btn btn-success mt-3">Register</a>
+            </div>
+        </form>
+    </div>
+</body>
