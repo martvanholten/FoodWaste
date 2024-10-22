@@ -3,13 +3,13 @@ using NSubstitute.ReturnsExtensions;
 
 namespace ApplicationServicesTests
 {
-    public class StudentServiceTest
+    public class StudentServiceTests
     {
         private IStudentService studentService;
         private IPakkageRepo pakkageRepo = Substitute.For<IPakkageRepo>();
         private IStudentRepo studentRepo = Substitute.For<IStudentRepo>();
 
-        public StudentServiceTest()
+        public StudentServiceTests()
         {
             this.studentService = new StudentService(this.studentRepo, this.pakkageRepo);
         }

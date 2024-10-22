@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Domain.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
 
 namespace UserInterface.Controllers
@@ -262,7 +263,21 @@ namespace UserInterface.Controllers
             try
             {
                 pakkageService.AddProduct(pakkageTitle, productTitle);
-                return View("PakkageEmploy", pakkageService.GetPakkage(pakkageTitle));
+                Pakkage pakkage = pakkageService.GetPakkage(pakkageTitle);
+                ViewUpdatePakkage viewPakkage = new ViewUpdatePakkage
+                {
+                    Title = pakkage.Title,
+                    City = pakkage.City,
+                    Cantine = pakkage.Cantine,
+                    ExperationDate = pakkage.ExperationDate,
+                    PickUpDate = pakkage.PickUpDate,
+                    AgeRestriction = pakkage.AgeRestriction,
+                    Type = pakkage.Type,
+                    Price = pakkage.Price,
+                    ReservedFor = pakkage.ReservedFor,
+                    Products = pakkage.Products,
+                };
+                return View("PakkageEmploy", viewPakkage);
             }
             catch (Exception ex)
             {
@@ -283,7 +298,21 @@ namespace UserInterface.Controllers
             try
             {
                 pakkageService.RemoveProduct(pakkageTitle, productTitle);
-                return View("PakkageEmploy", pakkageService.GetPakkage(pakkageTitle));
+                Pakkage pakkage = pakkageService.GetPakkage(pakkageTitle);
+                ViewUpdatePakkage viewPakkage = new ViewUpdatePakkage
+                {
+                    Title = pakkage.Title,
+                    City = pakkage.City,
+                    Cantine = pakkage.Cantine,
+                    ExperationDate = pakkage.ExperationDate,
+                    PickUpDate = pakkage.PickUpDate,
+                    AgeRestriction = pakkage.AgeRestriction,
+                    Type = pakkage.Type,
+                    Price = pakkage.Price,
+                    ReservedFor = pakkage.ReservedFor,
+                    Products = pakkage.Products,
+                };
+                return View("PakkageEmploy", viewPakkage);
             }
             catch (Exception ex)
             {
