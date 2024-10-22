@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'FoodWasteAvans'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_127093A7B5D24A1CB4E6A1947E577016 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_784ED544A4644B2F9316930385C75E51 }}
           package: .
