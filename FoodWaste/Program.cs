@@ -1,6 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add repos to the container.
 builder.Services.AddScoped<ICantineRepo, CantineRepo>();
 builder.Services.AddScoped<IPakkageRepo, PakkageRepo>();
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
@@ -8,6 +8,7 @@ builder.Services.AddScoped<IStudentRepo, StudentRepo>();
 builder.Services.AddScoped<IEmployRepo, EmployRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 
+// Add services to the container.
 builder.Services.AddScoped<ICantineService, CantineService>();
 builder.Services.AddScoped<IEmployService, EmployService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
@@ -17,25 +18,18 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddControllersWithViews();
 
-//NEEDED WHEN IN AZURE
-//var connection = String.Empty;
-//if (builder.Environment.IsDevelopment())
-//{
-//    connection = builder.Configuration.GetConnectionString("TOO_GOOD_TO_GO_CONNSTR");
-//}
-//else
-//{
-//    connection = Environment.GetEnvironmentVariable("TOO_GOOD_TO_GO_CONNSTR");
-//}
-
-//builder.Services.AddDbContext<TgtgDbContext>(options =>
-//    options.UseSqlServer(connection));
-
-builder.Services.AddDbContext<FoodWasteContext>(builderOptions =>
+var connection = String.Empty;
+if (builder.Environment.IsDevelopment())
 {
-    builderOptions.UseSqlServer(builder.Configuration.GetConnectionString("DataBaseFoodWasteConection"));
-    builderOptions.EnableSensitiveDataLogging(true);
-});
+    connection = builder.Configuration.GetConnectionString("DataBaseFoodWasteConection");
+}
+else
+{
+    connection = Environment.GetEnvironmentVariable("DataBaseFoodWasteConection");
+}
+
+builder.Services.AddDbContext<FoodWasteContext>(options =>
+    options.UseSqlServer(connection));
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(config =>
 {

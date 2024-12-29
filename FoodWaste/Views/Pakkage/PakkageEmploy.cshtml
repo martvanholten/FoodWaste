@@ -14,14 +14,14 @@
     <h5 class="bg-success text-white text-center m-2 p-2">Wijzig het pakket @Model.Title</h5>
     <div class="text-center p-2">
         <form asp-controller="Pakkage" asp-action="Update" asp-route-oldTitle="@Model?.Title" method="post" class="col-xs-1" align="center">
-            <div asp-validation-summary="All"></div>
+            <div asp-validation-summary="All" class="text-danger"></div>
             <div class="text-center p-2">
                 <div class="col-xs-1 border" align="center">
                     <div class="bg-success text-white text-center m-2 p-2 font-weight-bold">
-                        <h5>Project informatie</h5>
+                        <h5>Pakket informatie</h5>
                     </div>
                     <div class="text-success">
-                        <h6 class="font-weight-bold">Pakket informatie</h6>
+                        <h6 class="font-weight-bold">Details</h6>
                     </div>
                     <div class="row font-weight-bold text-success">
                         <div class="col form-group"><label class="form-label" asp-for="Type"></label></div>
@@ -29,19 +29,23 @@
                         <div class="col form-group"><label class="form-label" asp-for="AgeRestriction"></label></div>
                     </div>
                     <div class="row">
-                        @if (Model!.Type!.Equals("Evning meal"))
+                        @if (Model.Type == null)
                         {
-                            <div class="col form-group"><input asp-for="Type" class="form-control" placeholder="Avond maal" /></div>
+                            <div class="col form-group"><input asp-for="Type" class="form-control align-content-center text-center" placeholder="" style="max-width: 10rem;" /></div>
+                        }
+                        else if (Model.Type.Equals("Evning meal"))
+                        {
+                            <div class="col form-group"><input asp-for="Type" class="form-control align-content-center text-center" placeholder="Avond maal" style="max-width: 10rem;"/></div>
                         }
                         else if (Model.Type.Equals("Lunch"))
                         {
-                            <div class="col form-group"><input asp-for="Type" class="form-control" placeholder="Lunch" /></div>
+                            <div class="col form-group"><input asp-for="Type" class="form-control align-content-center text-center" placeholder="Lunch" style="max-width: 10rem;" /></div>
                         }
                         else if (Model.Type.Equals("Breakfast"))
                         {
-                            <div class="col form-group"><input asp-for="Type" class="form-control" placeholder="Ontbijt" /></div>
+                            <div class="col form-group"><input asp-for="Type" class="form-control align-content-center text-center" placeholder="Ontbijt" style="max-width: 10rem;" /></div>
                         }
-                        <div class="col form-group"><input asp-for="Price" class="form-control" placeholder="@Model.Price" /></div>
+                        <div class="col form-group"><input asp-for="Price" class="form-control align-content-center text-center" placeholder="@Model.Price" style="max-width: 10rem;" /></div>
                         @if (Model.AgeRestriction == 1)
                         {
                             <div class="col form-group">18+</div>
@@ -60,8 +64,8 @@
                         <div class="col form-group"><label class="form-label" asp-for="Cantine"></label></div>
                     </div>
                     <div class="row">
-                        <div class="col form-group"><input asp-for="City" class="form-control" placeholder="@Model.City" /></div>
-                        <div class="col form-group"><input asp-for="Cantine" class="form-control" placeholder="@Model.Cantine" /></div>
+                        <div class="col form-group"><input asp-for="City" class="form-control align-content-center text-center" placeholder="@Model.City" style="max-width: 10rem;" /></div>
+                        <div class="col form-group"><input asp-for="Cantine" class="form-control align-content-center text-center" placeholder="@Model.Cantine" style="max-width: 10rem;" /></div>
                     </div>
                     <hr>
                     <div class="text-success">
@@ -72,8 +76,8 @@
                         <div class="col form-group"><label class="form-label" asp-for="ExperationDate"></label></div>
                     </div>
                     <div class="row text-success">
-                        <div class="col form-group"><input asp-for="PickUpDate" class="form-control" placeholder="@Model.PickUpDate" /></div>
-                        <div class="col form-group"><input asp-for="ExperationDate" class="form-control" placeholder="@Model.ExperationDate" /></div>
+                        <div class="col form-group"><input asp-for="PickUpDate" class="form-control" placeholder="@Model.PickUpDate" style="max-width: 20rem;"/></div>
+                        <div class="col form-group"><input asp-for="ExperationDate" class="form-control" placeholder="@Model.ExperationDate" style="max-width: 20rem;"/></div>
                     </div>
                     <div class="text-success">
                         <h6 class="font-weight-bold">Reserveering</h6>
@@ -93,7 +97,7 @@
             @if (Model.ReservedFor == null)
             {
                 <div class="text-center">
-                    <button type="submit" class="btn btn-success mt-3">Wijzig</button>
+                    <button type="submit" class="btn btn-danger mt-3">Wijzig</button>
                 </div>
             }
         </form>
@@ -122,7 +126,7 @@
                         }
                         @if (Model!.ReservedFor == null)
                         {
-                            <td><a asp-controller="Pakkage" asp-action="DeleteProduct" asp-route-pakkageTitle="@Model.Title" asp-route-productTitle="@p?.Title" method="get" class="btn btn-success mt-3">Verwijder</a></td>
+                            <td><a asp-controller="Pakkage" asp-action="DeleteProduct" asp-route-pakkageTitle="@Model.Title" asp-route-productTitle="@p?.Title" method="get" class="btn btn-danger mt-3">Verwijder</a></td>
                         }
                     </tr>
                 }
@@ -139,7 +143,7 @@
                     <input type="text" id="productTitle" name="productTitle" class="form-control" />
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-success mt-3">Voeg toe</button>
+                    <button type="submit" class="btn btn-danger mt-3">Voeg toe</button>
                 </div>
             </form>
         </div>
@@ -147,7 +151,7 @@
     @if (Model.ReservedFor == null)
     {
         <div class="text-center p-2">
-            <a asp-controller="Pakkage" asp-action="Delete" asp-route-title="@Model?.Title" method="get" class="btn btn-success mt-3">Verwijder pakket</a>
+            <a asp-controller="Pakkage" asp-action="Delete" asp-route-title="@Model?.Title" method="get" class="btn btn-danger mt-3">Verwijder pakket</a>
         </div>
     }
 </body>

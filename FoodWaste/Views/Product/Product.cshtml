@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-xl-4">
                 <div class="card mb-4 mb-xl-0">
-                    <div class="card-header">Profiel foto</div>
+                    <div class="card-header text-success">Profiel foto</div>
                     <div class="card-body text-center">
                         <img class="img-account-profile rounded-circle mb-2" src="@Model.Photo" alt="">
                     </div>
@@ -25,14 +25,14 @@
             </div>
             <div class="col-xl-8">
                 <div class="card mb-4">
-                    <div class="card-header">Product gegevens</div>
+                    <div class="card-header text-success">Product gegevens</div>
                     <div class="card-body">
                         @if (Model.Alchol == 1)
                         {
                             <div class="mb-3">
                                 <label class="small mb-1">Leeftijd:</label>
                                 <br />
-                                18+
+                                <div class="text-success">18+</div>
                             </div>
                         }
                         else
@@ -40,7 +40,7 @@
                             <div class="mb-3">
                                 <label class="small mb-1">Age:</label>
                                 <br />
-                                All
+                                <div class="text-success">all</div>
                             </div>
                         }
                     </div>

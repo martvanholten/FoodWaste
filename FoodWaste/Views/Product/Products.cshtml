@@ -13,30 +13,33 @@
 <body>
     <h5 class="bg-success text-white text-center m-2 p-2">Producten</h5>
     <div class="text-center p-2">
-        <table class="table table-bordered table-striped table-sm">
-            <thead>
-                <tr>
-                    <th class="text-success">Title</th>
-                    <th class="text-success">Alcohol</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (Domain.Models.Product? p in Model)
-                {
-                    <tr>
-                        <td class="text-success"><a class="text-success" asp-controller="Product" method="get" asp-action="Product" asp-route-title="@p?.Title">@p?.Title</a></td>
-                        @if (p?.Alchol == 1)
-                        {
-                            <td class="text-success">Bevat alcohol</td>
-                        }
-                        else
-                        {
-                            <td class="text-success">Bevat geen alcohol</td>
-                        }
-                    </tr>
-                }
-            </tbody>
-        </table>
+        @foreach (Domain.Models.Product? p in Model)
+        {
+            <div class="container pb-5 mt-n2 mt-md-n3 border-bottom" align="center">
+                <div class="col-xl-9 col-md-8 align-content-center" align="center">
+                    <h5 class="bg-success text-white text-center m-2 p-2">@p?.Title</h5>
+                    <div class="d-sm-flex justify-content-between my-4 pb-4" align="center">
+                        <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-sm-left">
+                            <img src="@p?.Photo" alt="Alternate Text" />
+                        </div>
+                        <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-sm-left">
+                            <div class="text-success fw-bold">Leeftijd:</div>
+                            @if (p?.Alchol == 1)
+                            {
+                                <div class="text-success">Bevat alcohol</div>
+                            }
+                            else
+                            {
+                                <div class="text-success">Bevat geen alcohol</div>
+                            }
+                        </div>
+                        <div class="pt-2 pt-sm-0 pl-sm-3 mx-auto mx-sm-0 text-sm-left">
+                        </div>
+                    </div>
+                    <a class="btn btn-danger mt-3" asp-controller="Product" method="get" asp-action="Product" asp-route-title="@p?.Title">Details</a>
+                </div>
+            </div>
+        }
     </div>
 </body>
 </html>

@@ -1,5 +1,3 @@
-using ApplicationServices.Logic;
-using Domain.Models;
 using NSubstitute.ReturnsExtensions;
 
 namespace ApplicationServicesTests

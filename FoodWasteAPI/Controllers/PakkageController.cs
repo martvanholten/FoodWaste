@@ -7,6 +7,7 @@ namespace FoodWasteAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class PakkageController : ControllerBase
     {
         private IUserService userService;

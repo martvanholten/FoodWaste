@@ -1,5 +1,4 @@
-﻿using Domain.Models;
-using NSubstitute.ReturnsExtensions;
+﻿using NSubstitute.ReturnsExtensions;
 
 namespace ApplicationServicesTests
 {

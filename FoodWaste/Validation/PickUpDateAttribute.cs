@@ -9,7 +9,7 @@ namespace UserInterface.Validation
             if (value is DateTime)
             {
                 DateTime pickUpDate = (DateTime)value;
-                if (pickUpDate >= DateTime.Now && pickUpDate < DateTime.Now.AddDays(3))
+                if (pickUpDate >= DateTime.Now && pickUpDate < DateTime.Now.AddDays(2))
                 {
                     return ValidationResult.Success;
                 }

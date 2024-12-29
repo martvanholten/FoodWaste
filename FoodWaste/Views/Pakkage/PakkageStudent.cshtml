@@ -15,10 +15,10 @@
     <div class="text-center p-2">
         <div class="col-xs-1 border" align="center">
             <div class="bg-success text-white text-center m-2 p-2 font-weight-bold">
-                <h5>Project informatie</h5>
+                <h5>Pakket informatie</h5>
             </div>
             <div class="text-success">
-                <h6 class="font-weight-bold">Pakket informatie</h6>
+                <h6 class="font-weight-bold">Details</h6>
             </div>
             <div class="row font-weight-bold">
                 <div class="col">Titel:</div>
@@ -37,7 +37,7 @@
                 {
                     <div class="col">Ontbijt</div>
                 }
-                <div class="col">@Model.Price</div>
+                <div class="col">€ @Model.Price</div>
                 @if(Model.AgeRestriction == 1){
                     <div class="col">18+</div>
                 }
@@ -73,15 +73,16 @@
                 <h6 class="font-weight-bold">Reserveering</h6>
             </div>
             <div class="row font-weight-bold">
-                <div class="col text-success"></div>
-                @if(Model.ReservedForNavigation == null){
-                    <div class="col">Niet gereserveerd</div>
-                }
-                else
-                {
-                    <div class="col">@Model.ReservedForNavigation.StudentNr</div>
-                }
-                <div class="col"></div>
+                <div class="row font-weight-bold">
+                    @if (Model.ReservedFor == null)
+                    {
+                        <div class="col">Niet gereserveerd</div>
+                    }
+                    else
+                    {
+                        <div class="col">@Model.ReservedFor</div>
+                    }
+                </div>
             </div>
         </div>
     </div>
@@ -111,8 +112,11 @@
             </tbody>
         </table>
     </div>
-    <div class="text-center p-2">
-        <a asp-controller="Pakkage" asp-action="Reserve" asp-route-title="@Model.Title" method="get" class="btn btn-success mt-3">Reserveer het pakket</a>
-    </div>
+    @if (Model.ReservedFor == null)
+    {
+        <div class="text-center p-2">
+            <a asp-controller="Pakkage" asp-action="Reserve" asp-route-title="@Model.Title" method="get" class="btn btn-danger mt-3">Reserveer het pakket</a>
+        </div>
+    }
 </body>
 </html>

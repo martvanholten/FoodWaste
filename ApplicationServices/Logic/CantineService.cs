@@ -47,6 +47,12 @@
         {
             try
             {
+                IEnumerable<Cantine?> cantines = cantineRepo.GetCantines();
+                Cantine? cityCheck = cantines.Where(c => c.City.Equals(city)).FirstOrDefault();
+                if (cityCheck == null)
+                {
+                    throw new ErrorModel($"Er zijn geen locaties in {city}", 404);
+                }
                 Cantine? cantine = cantineRepo.GetCantine(city, location);
                 if (cantine == null)
                 {

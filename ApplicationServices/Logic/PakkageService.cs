@@ -1,14 +1,18 @@
-﻿namespace ApplicationServices.Logic
+﻿using System.Linq;
+
+namespace ApplicationServices.Logic
 {
     public class PakkageService : IPakkageService
     {
         private IPakkageRepo pakkageRepo;
         private IProductRepo productRepo;
+        private ICantineService cantineService;
 
-        public PakkageService(IPakkageRepo pakkageRepo, IProductRepo productRepo)
+        public PakkageService(IPakkageRepo pakkageRepo, IProductRepo productRepo, ICantineService cantineService)
         {
             this.pakkageRepo = pakkageRepo;
             this.productRepo = productRepo;
+            this.cantineService = cantineService;
         }
 
         public void AddPakkage(Pakkage pakkage)

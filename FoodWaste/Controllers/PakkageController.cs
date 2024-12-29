@@ -1,5 +1,4 @@
-﻿using Domain.Models;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
 
 namespace UserInterface.Controllers
@@ -151,12 +150,24 @@ namespace UserInterface.Controllers
                     pakkage.ExperationDate = viewPakkage.ExperationDate ?? pakkage.ExperationDate;
                     pakkage.AgeRestriction = viewPakkage.AgeRestriction ?? pakkage.AgeRestriction;
                     pakkage.Price = viewPakkage.Price ?? pakkage.Price;
-                    pakkage.Type = viewPakkage.Type ?? pakkage.Type;
+                    if (viewPakkage.Type == null)
+                    {
+                        pakkage.Type = pakkage.Type;
+                    } else if (viewPakkage.Type.Equals("Ontbijt"))
+                    {
+                        pakkage.Type = "Breakfast";
+                    }else if (viewPakkage.Type.Equals("Lunch"))
+                    {
+                        pakkage.Type = "Lunch";
+                    }else if (viewPakkage.Type.Equals("Aavond maal"))
+                    {
+                        pakkage.Type = "Evning meal";
+                    }
                     pakkage.CantineNavigation = cantine;
 
                     pakkageService.UpdatePakkage(pakkage);
 
-                    return View("PakkageEmploy", pakkageService.GetPakkage(pakkage.Title));
+                    return View("PakkageEmploy", viewPakkage);
                 }
                 else
                 {
@@ -182,7 +193,12 @@ namespace UserInterface.Controllers
             try
             {
                 pakkageService.RemovePakkage(title);
-                return View("PakkagesEmploy", pakkageService.GetPakkages());
+                CantinePakkages viewModel = new CantinePakkages()
+                {
+                    City = cantineService.GetCitys(),
+                };
+
+                return View("PakkagesEmploy", viewModel);
             }
             catch (Exception ex)
             {
@@ -238,9 +254,27 @@ namespace UserInterface.Controllers
                         Type = viewPakkage.Type
                     };
 
+                    if (viewPakkage.Type.Equals("Ontbijt"))
+                    {
+                        pakkage.Type = "Breakfast";
+                    }
+                    else if (viewPakkage.Type.Equals("Lunch"))
+                    {
+                        pakkage.Type = "Lunch";
+                    }
+                    else if (viewPakkage.Type.Equals("Aavond maal"))
+                    {
+                        pakkage.Type = "Evning meal";
+                    }
+
                     pakkageService.AddPakkage(pakkage);
 
-                    return View("PakkageEmploy", viewPakkage);
+                    CantinePakkages viewModel = new CantinePakkages()
+                    {
+                        City = cantineService.GetCitys(),
+                    };
+
+                    return View("PakkagesEmploy", viewModel);
                 }
                 return View("PakkageAdd", viewPakkage);
             }

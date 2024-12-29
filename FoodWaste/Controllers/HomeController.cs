@@ -65,7 +65,6 @@ namespace UserInterface.Controllers
 
                     if (code != null)
                     {
-                        //USE FOR CLIENT SIDE
                         //var link = Url.Action(nameof(VerifyEmail),
                         //   "Home", new { registerModel.Email, registerModel.Password, code }, Request.Scheme, Request.Host.ToString())!;
 
@@ -106,7 +105,6 @@ namespace UserInterface.Controllers
         }
 
         //GET VIEW AFTER CLICKING THE EMAIL
-        //USE FOR CLIENT SIDE
         //[HttpGet]
         //public async Task<IActionResult> VerifyEmail(string email, string password, string code)
         //{
