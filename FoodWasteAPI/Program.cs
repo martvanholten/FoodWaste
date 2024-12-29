@@ -22,20 +22,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//NEEDED WHEN IN AZURE
-//var connection = String.Empty;
-//if (builder.Environment.IsDevelopment())
-//{
-//    connection = builder.Configuration.GetConnectionString("TOO_GOOD_TO_GO_CONNSTR");
-//}
-//else
-//{
-//    connection = Environment.GetEnvironmentVariable("TOO_GOOD_TO_GO_CONNSTR");
-//}
-
-//builder.Services.AddDbContext<TgtgDbContext>(options =>
-//    options.UseSqlServer(connection));
-
 builder.Services.AddDbContext<FoodWasteContext>(builderOptions =>
 {
     builderOptions.UseSqlServer(builder.Configuration.GetConnectionString("DataBaseFoodWasteConection"));
@@ -45,11 +31,7 @@ builder.Services.AddDbContext<FoodWasteContext>(builderOptions =>
 builder.Services.
     AddGraphQLServer()
     .AddQueryType<QueryDb>()
-    .AddProjections()
-    .AddFiltering()
-    .AddSorting()
-    .RegisterDbContext<FoodWasteContext>()
-    .RegisterService<PakkageService>();
+    .RegisterDbContext<FoodWasteContext>();
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(config =>
 {
